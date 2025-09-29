@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -65,4 +66,13 @@ func ConnectDB() {
 	}
 
 	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal("Failed to get database instance", err)
+	}
+
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
+	DB = db
 }
