@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/jinzhu/copier"
 	"github.com/mA4rK0/project-management/models"
 	"github.com/mA4rK0/project-management/services"
 	"github.com/mA4rK0/project-management/utils"
@@ -25,5 +26,8 @@ func (c *UserController) Register(ctx *fiber.Ctx) error {
 		return utils.BadRequest(ctx, "Failed Registration", err.Error())
 	}
 
-	return utils.Success(ctx, "Register Success", user)
+	var userResp models.UserResponse
+	_ = copier.Copy(&userResp, &user)
+
+	return utils.Success(ctx, "Register Success", userResp)
 }
