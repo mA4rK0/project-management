@@ -31,3 +31,29 @@ func (c *UserController) Register(ctx *fiber.Ctx) error {
 
 	return utils.Success(ctx, "Register Success", userResp)
 }
+
+func (c *UserController) Login (ctx *fiber.Ctx) error {
+	var body struct {
+		Email string `json:"email"`
+		Password string `json:"password"`
+	}
+	if err := ctx.BodyParser(&body); err != nil {
+		return utils.BadRequest(ctx, "Invalid Request", err.Error())
+	}
+
+	user, err := c.service.Login(body.Email, body.Password) 
+	if err != nil {
+		return utils.Unauthorized(ctx, "Login Failed", err.Error())
+	}
+
+	token, _ := utils.GenerateToken(user.InternalID, user.Role, user.Email, user.PublicID)
+	refreshToken, _ := utils.GenerateRefreshToken(user.InternalID)
+
+	var userResp models.UserResponse
+	_ = copier.Copy(&userResp, &user)
+	return utils.Success(ctx, "Login Success", fiber.Map {
+		"access_token": token,
+		"refresh_token": refreshToken,
+		"user": userResp,
+	})
+}

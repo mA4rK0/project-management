@@ -45,3 +45,12 @@ func NotFound(c *fiber.Ctx, message string, err string) error {
 		Error: err,
 	})
 }
+
+func Unauthorized(c *fiber.Ctx, message string, err string) error {
+	return c.Status(fiber.StatusUnauthorized).JSON(Response {
+		Status: "Error Not Found",
+		ResponseCode: fiber.StatusUnauthorized,
+		Message: message,
+		Error: err,
+	})
+}

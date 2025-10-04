@@ -14,4 +14,5 @@ func Setup(app *fiber.App, uc *controllers.UserController) {
 		log.Fatal("Error loading .env file")
 	}
 	app.Post("/v1/auth/register", uc.Register)
+	app.Post("/v1/auth/login", uc.Login)
 }

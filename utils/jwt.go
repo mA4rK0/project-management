@@ -23,3 +23,16 @@ func GenerateToken(userID int64, role, email string, publicID uuid.UUID) (string
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(secret))
 }
+
+func GenerateRefreshToken(userID int64) (string, error) {
+	secret := config.AppConfig.JWTSecret
+	duration, _ := time.ParseDuration(config.AppConfig.JWTRefreshToken)
+
+	claims := jwt.MapClaims {
+		"user_id": userID,
+		"exp": time.Now().Add(duration).Unix(),
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(secret))
+}
