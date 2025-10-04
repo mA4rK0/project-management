@@ -1,8 +1,8 @@
-import { ThemeProvider, CssBaseline, createTheme, Button } from "@mui/material";
+import { Button, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["Roboto, sans-serif"].join(","),
+    fontFamily: ['Roboto, sans-serif'].join(','),
   },
 });
 
