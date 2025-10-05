@@ -70,5 +70,5 @@ func (c *UserController) GetUser (ctx *fiber.Ctx) error {
 	if err != nil {
 		return utils.BadRequest(ctx, "Internal Server Error", err.Error())
 	}
-	return utils.Success(ctx, "Data berhasil ditemukan", useResp)
+	return utils.Success(ctx, "Successfully Get Data", useResp)
 }
