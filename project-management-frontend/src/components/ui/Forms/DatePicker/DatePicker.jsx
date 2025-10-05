@@ -1,12 +1,14 @@
-import { TextField as BaseTextField, Box } from '@mui/material';
+import { Box } from '@mui/material';
+import { DatePicker as BaseDatePicker } from '@mui/x-date-pickers';
 import { Controller } from 'react-hook-form';
 
-const TextField = ({
+const DatePicker = ({
   control,
   name,
   label,
   defaultValue,
   helperText,
+  sx,
   ...props
 }) => {
   return (
@@ -14,16 +16,18 @@ const TextField = ({
       name={name}
       control={control}
       defaultValue={defaultValue}
-      render={({ field: { value, onChange, onBlur } }) => {
+      render={({ field: { value, onChange } }) => {
         return (
           <Box sx={{ marginBottom: 2 }}>
-            <BaseTextField
+            <BaseDatePicker
               {...props}
-              fullWidth
+              sx={{
+                width: '100%',
+                ...sx,
+              }}
               label={label}
-              variant="outlined"
+              variant={'outlined'}
               value={value}
-              onBlur={onBlur}
               onChange={onChange}
               helperText={helperText}
             />
@@ -34,4 +38,4 @@ const TextField = ({
   );
 };
 
-export default TextField;
+export default DatePicker;
