@@ -2,6 +2,7 @@ import { Paper, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import Select from '../../../ui/Forms/Select';
+import TextField from '../../../ui/Forms/TextField';
 
 const Login = () => {
   const { control } = useForm();
@@ -14,6 +15,7 @@ const Login = () => {
       height={'100vh'}
     >
       <Paper sx={{ width: 600, padding: 2 }}>
+        <TextField name={'username'} control={control} label={'Username'} />
         <Select
           name={'category'}
           control={control}
