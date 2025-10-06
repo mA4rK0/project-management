@@ -9,7 +9,7 @@ const DetailProject = () => {
       breadcrumbs={[
         {
           label: 'Project List',
-          href: '/projects',
+          href: '/projects/:id',
         },
         {
           label: 'Software Engineering',
