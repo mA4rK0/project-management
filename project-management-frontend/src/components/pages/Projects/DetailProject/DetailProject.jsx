@@ -1,45 +1,25 @@
-import { Settings } from '@mui/icons-material';
-import { Stack } from '@mui/material';
+import { colors, Paper, Typography } from '@mui/material';
 
-import Avatar from '../../../ui/Avatar';
-import Dropdown from '../../../ui/Dropdown';
+import SidebarLayout from '../../../layouts/SidebarLayout';
 
 const DetailProject = () => {
   return (
-    <Stack
-      sx={{
-        height: '100vh',
-        width: '100%',
-      }}
-      justifyContent={'center'}
-      alignItems={'center'}
-      direction={'row'}
-      spacing={2}
+    <SidebarLayout
+      pageTitle="Project List"
+      breadcrumbs={[
+        {
+          label: 'Project List',
+          href: '/projects',
+        },
+        {
+          label: 'Software Engineering',
+        },
+      ]}
     >
-      <Avatar
-        text={'Jhonny Mango'}
-        onClick={() => {
-          console.log('handle click avatar');
-        }}
-      />
-      <Dropdown
-        icon={<Settings />}
-        options={[
-          {
-            label: 'Close this project',
-            onClick: () => {
-              console.log('handle close project');
-            },
-          },
-          {
-            label: 'Change deadline',
-            onClick: () => {
-              console.log('handle update deadline project');
-            },
-          },
-        ]}
-      />
-    </Stack>
+      <Paper sx={{ padding: 2, background: colors.lightBlue[100] }}>
+        <Typography> Show project list here</Typography>
+      </Paper>
+    </SidebarLayout>
   );
 };
 
