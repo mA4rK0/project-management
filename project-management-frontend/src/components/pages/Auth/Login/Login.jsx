@@ -11,8 +11,10 @@ import services from '@/services';
 import session from '@/utils/session';
 
 const loginFormSchema = Yup.object({
-  email: Yup.string().email().required(),
-  password: Yup.string().required(),
+  email: Yup.string()
+    .required('Email is required')
+    .email('Email format is invalid'),
+  password: Yup.string().required('Password is required'),
 });
 
 const Login = () => {
