@@ -29,7 +29,7 @@ const Login = () => {
   const onSubmit = async (formValues) => {
     setLoading(true);
     const response = await services.auth.login(formValues);
-    session.setSession(response.data.data.access_token);
+    session.setSession(response.data.data);
     setLoading(false);
     navigate('/');
   };
