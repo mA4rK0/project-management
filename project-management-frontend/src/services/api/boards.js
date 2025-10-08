@@ -6,6 +6,10 @@ const boards = {
       params,
     });
   },
+
+  async create(data) {
+    return network.post('/api/v1/boards', data);
+  },
 };
 
 export default boards;
