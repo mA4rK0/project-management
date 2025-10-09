@@ -1,4 +1,3 @@
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, CircularProgress, Stack } from '@mui/material';
 import dayjs from 'dayjs';
@@ -41,7 +40,7 @@ const ModalAddNewProject = ({ open, handleClose }) => {
       due_date: datetime.getIsoString(values.due_date),
     });
 
-    snackbar.toggleSnackbar(true, 'Succesfully created new project !');
+    snackbar.toggleSnackbar(true, 'Successfully created new project !');
 
     setLoading(false);
     reset();

@@ -53,7 +53,6 @@ const TextField = ({
               value={value}
               onBlur={onBlur}
               onChange={onChange}
-              helperText={error?.message ? error?.message : helperText}
               error={Boolean(error)}
               endAdornment={
                 secureText ? (
@@ -65,9 +64,7 @@ const TextField = ({
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
-                ) : (
-                  <></>
-                )
+                ) : null
               }
             />
             <FormHelperText error={Boolean(error)}>

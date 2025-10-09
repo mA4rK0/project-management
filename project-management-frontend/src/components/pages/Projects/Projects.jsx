@@ -35,14 +35,19 @@ const Projects = () => {
 
   const fetchBoardsData = async () => {
     setLoading(true);
-    const response = await services.boards.myBoards({
-      filter: debounceSearch,
-      limit: 10,
-      page,
-    });
-    setBoardsData(response.data.data);
-    setBoardsMeta(response.data.meta);
-    setLoading(false);
+    try {
+      const response = await services.boards.myBoards({
+        filter: debounceSearch,
+        limit: 10,
+        page,
+      });
+      setBoardsData(response.data.data);
+      setBoardsMeta(response.data.meta);
+    } catch (error) {
+      console.error('Failed to fetch boards:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -103,7 +108,7 @@ const Projects = () => {
               label: 'Description',
             },
             {
-              id: 'title',
+              id: 'created_at',
               label: 'Date created',
               render(data) {
                 return (
@@ -112,13 +117,13 @@ const Projects = () => {
               },
             },
             {
-              id: 'title',
+              id: 'action',
               label: 'Action',
               render(data) {
                 return (
                   <Link to={`/projects/${data.public_id}`}>
                     <Button type="button" variant="outlined">
-                      Detail proyek
+                      Project details
                     </Button>
                   </Link>
                 );

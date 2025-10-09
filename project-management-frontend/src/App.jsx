@@ -11,6 +11,7 @@ import Dashboard from './components/pages/Dashboard';
 import Projects from './components/pages/Projects';
 import DetailProject from './components/pages/Projects/DetailProject';
 import Settings from './components/pages/Settings';
+import SnackbarProvider from './components/ui/Snackbar';
 
 const theme = createTheme({
   typography: {
@@ -55,8 +56,10 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <CssBaseline />
-        <RouterProvider router={router} />
+        <SnackbarProvider>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </SnackbarProvider>
       </LocalizationProvider>
     </ThemeProvider>
   );
