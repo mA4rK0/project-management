@@ -1,25 +1,11 @@
-import { colors, Paper, Typography } from '@mui/material';
-
-import SidebarLayout from '../../../layouts/SidebarLayout';
+import DetailProjectContainer from './components/DetailProjectContainer';
+import DetailProjectProvider from './DetailProjectContext';
 
 const DetailProject = () => {
   return (
-    <SidebarLayout
-      pageTitle="Project List"
-      breadcrumbs={[
-        {
-          label: 'Project List',
-          href: '/projects/:id',
-        },
-        {
-          label: 'Software Engineering',
-        },
-      ]}
-    >
-      <Paper sx={{ padding: 2, background: colors.lightBlue[100] }}>
-        <Typography> Show project list here</Typography>
-      </Paper>
-    </SidebarLayout>
+    <DetailProjectProvider>
+      <DetailProjectContainer />
+    </DetailProjectProvider>
   );
 };
 

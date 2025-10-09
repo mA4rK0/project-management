@@ -14,6 +14,11 @@ const datetime = {
   getIsoString(dateValue) {
     return dayjs(dateValue).tz(TZ_ASIA_JAKARTA).toISOString();
   },
+  getDurationDays(startDate, endDate) {
+    const start = dayjs(startDate).tz(TZ_ASIA_JAKARTA);
+    const end = dayjs(endDate).tz(TZ_ASIA_JAKARTA);
+    return end.diff(start, 'day') + 1;
+  },
 };
 
 export default datetime;

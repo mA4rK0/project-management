@@ -1,6 +1,7 @@
-import { Box, Button, Link, Stack } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { Link } from 'react-router';
 import { useDebounce } from 'use-debounce';
 
 import ModalAddNewProject from './Modals/ModalAddNewProject';
@@ -63,10 +64,10 @@ const Projects = () => {
   return (
     <>
       <SidebarLayout
-        pageTitle="Project List"
+        pageTitle="Project Lists"
         breadcrumbs={[
           {
-            label: 'Project List',
+            label: 'Project Lists',
           },
         ]}
       >

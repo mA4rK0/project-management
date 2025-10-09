@@ -10,6 +10,7 @@ import SignUp from './components/pages/Auth/SignUp';
 import Dashboard from './components/pages/Dashboard';
 import Projects from './components/pages/Projects';
 import DetailProject from './components/pages/Projects/DetailProject';
+import detailProjectLoader from './components/pages/Projects/DetailProject/DetailProject.loader';
 import Settings from './components/pages/Settings';
 import SnackbarProvider from './components/ui/Snackbar';
 
@@ -38,12 +39,17 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     loader: sidebarLoader,
-    element: <Projects />,
-  },
-  {
-    path: '/projects/:id',
-    loader: sidebarLoader,
-    element: <DetailProject />,
+    children: [
+      {
+        path: '/projects',
+        element: <Projects />,
+      },
+      {
+        path: '/projects/:id',
+        loader: detailProjectLoader,
+        element: <DetailProject />,
+      },
+    ],
   },
   {
     path: '/settings',
