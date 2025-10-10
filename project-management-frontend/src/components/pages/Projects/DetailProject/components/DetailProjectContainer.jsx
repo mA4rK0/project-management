@@ -1,18 +1,24 @@
 import { colors, Paper, Typography } from '@mui/material';
+import { useLoaderData } from 'react-router';
+
+import useDetailProjectContext from '../hooks/useDetailProjectContext';
 
 import SidebarLayout from '@/components/layouts/SidebarLayout';
 
 const DetailProjectContainer = () => {
+  const detailProjectData = useLoaderData();
+  const detailProjectContext = useDetailProjectContext();
+
   return (
     <SidebarLayout
-      pageTitle="Project List"
+      pageTitle={`${detailProjectData.title} (${detailProjectContext.getProjectInitials})`}
       breadcrumbs={[
         {
           label: 'Project List',
-          href: '/projects/:id',
+          href: '/projects',
         },
         {
-          label: 'Software Engineering',
+          label: detailProjectData.title,
         },
       ]}
     >
