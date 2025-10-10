@@ -1,7 +1,9 @@
-import { colors, Paper, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import { useLoaderData } from 'react-router';
 
 import useDetailProjectContext from '../hooks/useDetailProjectContext';
+
+import CreateNewList from './CreateNewList';
 
 import SidebarLayout from '@/components/layouts/SidebarLayout';
 
@@ -22,9 +24,19 @@ const DetailProjectContainer = () => {
         },
       ]}
     >
-      <Paper sx={{ padding: 2, background: colors.lightBlue[100] }}>
-        <Typography> Show project list here</Typography>
-      </Paper>
+      <Stack
+        sx={{
+          height: 800,
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          direction: 'row',
+          gap: 2,
+          overflowX: 'auto',
+          pb: 5,
+        }}
+      >
+        <CreateNewList />
+      </Stack>
     </SidebarLayout>
   );
 };
