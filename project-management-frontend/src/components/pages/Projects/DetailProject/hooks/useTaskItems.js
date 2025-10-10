@@ -1,35 +1,19 @@
-import { useSortable } from '@dnd-kit/sortable';
+import { useMemo } from 'react';
 
 import useDetailProjectContext from './useDetailProjectContext';
 
-import { DRAG_CARD } from '@/utils/constants';
-
-const useTaskItems = ({ id, item }) => {
+const useTaskItems = (listId) => {
   const detailProjectContext = useDetailProjectContext();
+  const taskItemsData = detailProjectContext.getTaskItemsByListId(listId);
 
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
-    id,
-    data: {
-      ...item,
-      type: DRAG_CARD,
-    },
-  });
+  const taskItemDataIds = useMemo(() => {
+    return taskItemsData.map((item) => item.public_id);
+  }, [taskItemsData]);
 
   return {
     detailProjectContext,
-    isDragging,
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
+    taskItemsData,
+    taskItemDataIds,
   };
 };
 
