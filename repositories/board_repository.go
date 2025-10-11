@@ -12,6 +12,7 @@ type BoardRepository interface{
 	Update (board *models.Board) error
 	FindByPublicID (publicID string) (*models.Board, error)
 	AddMember (boardID uint, userIDs []uint) error
+	RemoveMembers (boardID uint, userIDs []uint) error
 }
 
 type boardRepository struct{}
