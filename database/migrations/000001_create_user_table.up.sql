@@ -11,4 +11,4 @@ CREATE TABLE users (
   deleted_at TIMESTAMP NULL,
   public_id UUID NOT NULL DEFAULT gen_random_uuid(),
   CONSTRAINT user_public_id_unique UNIQUE (public_id)
-)
+);
