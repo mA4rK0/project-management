@@ -12,6 +12,7 @@ const TaskSortableItem = ({ id, item, listId }) => {
     setNodeRef,
     transform,
     transition,
+    handleClickTaskItem,
   } = useTaskSortableItem({ id, item, listId });
   return (
     <Paper
@@ -23,6 +24,7 @@ const TaskSortableItem = ({ id, item, listId }) => {
         opacity: isDragging ? 0 : 1,
       }}
       elevation={2}
+      onClick={handleClickTaskItem}
       {...attributes}
       {...listeners}
     >

@@ -6,7 +6,6 @@ import useModalAddNewMember from './hooks/useModalAddNewMember';
 import TextField from '@/components/ui/Forms/TextField';
 import Modal from '@/components/ui/Modal';
 
-
 const ModalAddNewMember = () => {
   const {
     control,
@@ -34,11 +33,11 @@ const ModalAddNewMember = () => {
           <Warning />
 
           <Typography variant="body2">
-            Pengguna{' '}
+            User{' '}
             <Typography component={'span'} fontWeight={600}>
               {debounceEmail}
             </Typography>{' '}
-            tidak ditemukan
+            not found
           </Typography>
         </Stack>
       );
@@ -67,7 +66,7 @@ const ModalAddNewMember = () => {
                 loading={isLoadingAddMember}
                 onClick={handleAddMember}
               >
-                Tambahkan
+                Add
               </Button>
               <Button
                 variant="outlined"
@@ -75,7 +74,7 @@ const ModalAddNewMember = () => {
                 onClick={() => setUsersData(null)}
                 disabled={isLoadingAddMember}
               >
-                Batal
+                Cancel
               </Button>
             </Stack>
           </Stack>
@@ -94,8 +93,8 @@ const ModalAddNewMember = () => {
         <TextField
           control={control}
           name={'email'}
-          label={'Cari pengguna'}
-          placeholder={'Masukkan email pengguna'}
+          label={'Search user'}
+          placeholder={'Enter user email address'}
           fullWidth
           disabled={isLoadingAddMember}
         />

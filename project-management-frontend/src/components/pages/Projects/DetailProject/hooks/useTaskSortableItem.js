@@ -1,10 +1,13 @@
 import { useSortable } from '@dnd-kit/sortable';
+import { useSearchParams } from 'react-router';
 
 import useDetailProjectContext from './useDetailProjectContext';
 
 import { DRAG_CARD } from '@/utils/constants';
 
-const useTaskSortableItem = ({ id, item }) => {
+const useTaskSortableItem = ({ id, item, listId }) => {
+  const [, setSearchParams] = useSearchParams();
+
   const detailProjectContext = useDetailProjectContext();
 
   const {
@@ -22,6 +25,15 @@ const useTaskSortableItem = ({ id, item }) => {
     },
   });
 
+  const handleClickTaskItem = (e) => {
+    e.stopPropagation();
+    detailProjectContext.setIsOpenTaskDetail(true);
+    setSearchParams({
+      taskId: item.public_id,
+      listId,
+    });
+  };
+
   return {
     detailProjectContext,
     isDragging,
@@ -30,6 +42,7 @@ const useTaskSortableItem = ({ id, item }) => {
     setNodeRef,
     transform,
     transition,
+    handleClickTaskItem,
   };
 };
 
