@@ -9,7 +9,6 @@ import TextField from '@/components/ui/Forms/TextField';
 import Modal from '@/components/ui/Modal';
 import datetime from '@/utils/datetime';
 
-
 const ModalTaskDetail = () => {
   const {
     taskId,
@@ -198,7 +197,7 @@ const ModalTaskDetail = () => {
           >
             {taskDetailData.due_date &&
             taskDetailData.due_date === '0001-01-01T00:00:00Z'
-              ? 'Belum ada deadline, klik untuk menambahkan'
+              ? 'No deadline, click to add'
               : datetime.format(taskDetailData.due_date, 'DD MMMM YYYY')}
           </Typography>
         )}
