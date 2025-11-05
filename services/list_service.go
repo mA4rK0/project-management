@@ -76,7 +76,7 @@ func (s *listService) GetByPublicID(publicID string) (*models.List, error) {
 func (s *listService) Create(list *models.List) error {
 	board, err := s.boardRepo.FindByPublicID(list.BoardPublicID.String())
 	if err != nil {
-		if errors.Is(gorm.ErrRecordNotFound, err) {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return errors.New("board not found")
 		}
 		return fmt.Errorf("failed to get board : %w", err)

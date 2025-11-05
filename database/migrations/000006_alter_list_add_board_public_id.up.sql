@@ -1,0 +1,2 @@
+ALTER TABLE lists
+ADD COLUMN board_public_id UUID NOT NULL;
