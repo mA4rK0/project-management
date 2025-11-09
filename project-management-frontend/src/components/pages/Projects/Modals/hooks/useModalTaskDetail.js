@@ -1,33 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useSearchParams } from 'react-router';
 
 import useDetailProjectContext from '../../DetailProject/hooks/useDetailProjectContext';
 
+import useModalTaskDetailContext from './useModalTaskDetailContext';
+
 import services from '@/services';
 
 const useModalTaskDetail = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [taskDetailData, setTaskDetailData] = useState({});
+  const [_, setSearchParams] = useSearchParams();
   const [isLoading, setLoading] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
   const [editTitle, setEditTitle] = useState(false);
   const [editDueDate, setEditDueDate] = useState(false);
-  const [editAssignee, setEditAssignee] = useState(false);
   const [isShowConfirmDelete, setShowConfirmDelete] = useState(false);
 
   const detailProjectData = useLoaderData();
   const detailProjectContext = useDetailProjectContext();
+  const modalTaskDetailContext = useModalTaskDetailContext();
 
-  const taskId = searchParams.get('taskId');
-  const listId = searchParams.get('listId');
+  const taskId = modalTaskDetailContext.taskId;
+  const listId = modalTaskDetailContext.listId;
+  const taskDetailData = modalTaskDetailContext.taskDetailData;
 
   const formTask = useForm();
-
-  const fetchTaskDetail = async (taskId) => {
-    const response = await services.cards.getDetail(taskId);
-    setTaskDetailData(response.data.data);
-  };
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -39,7 +36,6 @@ const useModalTaskDetail = () => {
       description: values.description ?? taskDetailData.description,
       position: taskDetailData.position,
     });
-    await fetchTaskDetail(taskId);
     setLoading(false);
     setEditDescription(false);
     setEditTitle(false);
@@ -59,33 +55,21 @@ const useModalTaskDetail = () => {
     await detailProjectContext.fetchBoardLists();
   };
 
-  useEffect(() => {
-    if (taskId && listId) {
-      fetchTaskDetail(taskId);
-    }
-  }, [taskId, listId]);
-
   return {
-    searchParams,
     taskDetailData,
     isLoading,
     editDescription,
     editTitle,
     editDueDate,
-    editAssignee,
     isShowConfirmDelete,
 
-    setSearchParams,
-    setTaskDetailData,
     setLoading,
     setEditDescription,
     setEditTitle,
     setEditDueDate,
-    setEditAssignee,
     setShowConfirmDelete,
 
     detailProjectData,
-    detailProjectContext,
 
     taskId,
     listId,
